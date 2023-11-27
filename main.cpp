@@ -10,10 +10,8 @@ static int count = 0;
 
 // Function to display the main menu
 void menu(Student []);
-
 // Function to handle staff operations
 void Staff(Student []);
-
 // Function to handle student operations
 void Stud(Student []);
 
