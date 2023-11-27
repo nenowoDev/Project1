@@ -36,7 +36,7 @@ class Student {
 
         friend void readFile(Student[], int&);
         friend void displayRecord(Student [], int&);
-		friend void add(Student [], int &);
+		friend void add(Student [], int&);
 		friend void del(Student [], int&);
 };
 
