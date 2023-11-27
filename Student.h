@@ -22,6 +22,18 @@ class Student {
         string getGender();
         string getPhoneNo();
 		string getDOB();
+		
+
+		string editID(string newID);
+		string editName(string newName);
+		string editProgramEnroll(string newProg);
+        string editIC(string newIC);
+		string editAddress(string newAddress);
+        string editGender(string newGender);
+        string editPhoneNo(string newPhone);
+		string editDOB(string newDOB);
+
+
         friend void readFile(Student[]);
         friend void displayRecord(Student []);
 };
