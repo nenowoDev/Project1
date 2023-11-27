@@ -33,7 +33,6 @@ void readFile(Student stud[]) {
             getline(inp, stud[n].DOB, ',');
 			getline(inp, stud[n].phoneNo);
             n++;
-		    //inp.ignore();
         }
         count = n;
     }
