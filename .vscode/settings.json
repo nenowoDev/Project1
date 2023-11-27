@@ -6,6 +6,7 @@
         "system_error": "cpp",
         "xlocale": "cpp",
         "ios": "cpp",
-        "xmemory": "cpp"
+        "xmemory": "cpp",
+        "limits": "cpp"
     }
 }
