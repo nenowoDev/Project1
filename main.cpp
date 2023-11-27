@@ -89,7 +89,7 @@ void menu(Student stud[]) {
                 break;
         case 3: exit(0);
                 break;
-        default:cout<<"\n\n\nWRONG OPTION!";
+        default:cout<<"\n\n\nWRONG OPTION!\n";
                system("PAUSE");
     }
     goto start;
@@ -126,7 +126,7 @@ void Staff(Student stud[]) {
             break;
         case 5: menu(stud);
             break;
-        default:cout<<"\n\n\n\nWRONG OPTION!";
+        default:cout<<"\n\n\n\nWRONG OPTION!\n";
     }
     system("PAUSE");
     goto start;
@@ -154,7 +154,7 @@ void Stud(Student stud[]) {
         //     break;
         case 2:menu(stud);
             break;
-        default:cout<<"\n\n\nWRONG OPTION!!";
+        default:cout<<"\n\n\nWRONG OPTION!!\n";
     }
     system("PAUSE");
     goto start;
