@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iomanip>
 #include <string>
+#include <vector>
 using namespace std;
 #include "Student.h"
 #include "Student.cpp"
@@ -14,6 +15,12 @@ void menu(Student [], int &count);
 void Staff(Student [], int &count);
 // Function to handle student operations
 void Stud(Student [], int &count);
+
+
+void mergeSort(Student[],int,int);
+void merge(Student[],int,int,int);
+
+
 
 // Function to read data from a file and store it in an array of Student objects
 void readFile(Student stud[], int &count) {
@@ -130,9 +137,9 @@ void del(Student stud[], int &count) {
 // Function to delete studen record
 
 
-void edit(Student stud[],int &count,int index=0){
+void edit(Student stud[],int &count,int index=-1){
 
-    if(index==0){
+    if(index==-1){
 
         cout<<"***********************************************************************\n";
         cout<<"                        EDIT STUDENT RECORD\n";
@@ -141,11 +148,13 @@ void edit(Student stud[],int &count,int index=0){
         cout<<"\n\n\n\t\t ENTER STUDENT ID : ";
         cin>>studID;
         system("cls");
-        int value=0;
+        int value=0,c=0;
+        vector<int> tempindex;
         for(int i=0;i<count;i++){
             if(stud[i].getID() == studID){
-                index=i;
+                tempindex.push_back(i);
                 value=1;
+                c+=1;
             }
         }
 
@@ -157,12 +166,18 @@ void edit(Student stud[],int &count,int index=0){
         	cout<<"\n\n\n\t\t\tRECORD NOT FOUND!\n\n\n\n\n";
              
         } 
-    	else
+    	else{
         	cout<<"\n\n\n\t\tTHE RECORD WAS FOUND SUCCESSFULLY\n\n\n\n\n"<<index;
+            if(c>1){
+                
+
+
+            }
+        }
 
     }
 
-    if(index!=0){
+    if(index!=-1){
 
        
         
@@ -264,13 +279,73 @@ void edit(Student stud[],int &count,int index=0){
 
         }
         
-        
+        if(choice>=1&&choice<=8){
+            cout<<"\n\n\t\t EDIT SUCCESSFUL\n";
+
+            mergeSort(stud,0,count-1);
+
+            ofstream f("Record.csv");
+                for(int i = 0; i < count; i++) {
+    	            f << stud[i].getID() << "," 
+                    << stud[i].getName() << "," 
+                    << stud[i].getProgramEnroll() << "," 
+                    << stud[i].getIC() << "," 
+                    << stud[i].getAddress() << "," 
+                    << stud[i].getGender() << "," 
+                    << stud[i].getDOB() << ","   
+                    << stud[i].getPhoneNo() << endl;     
+	            }
+            f.close();
+
+        }
 
 
     }
 
 
 }
+
+
+
+void merge(Student theArray[], int first, int mid, int last){
+    Student tempArray[100]; 
+    int first1 = first;  
+    int last1 = mid;  
+    int first2 = mid + 1; 
+    int last2 = last; 
+    int index = first1;
+
+    for (; (first1 <= last1) && (first2 <= last2); ++index){
+        if (theArray[first1].getID() < theArray[first2].getID()){
+            tempArray[index] = theArray[first1];
+            ++first1;
+        }
+        else{
+            tempArray[index] = theArray[first2];
+            ++first2;
+        }
+    } 
+    for (; first1 <= last1; ++first1, ++index)
+        tempArray[index] = theArray[first1];
+    for (; first2 <= last2; ++first2, ++index)
+        tempArray[index] = theArray[first2];
+
+    for (index = first; index <= last; ++index)
+        theArray[index] = tempArray[index];
+}
+
+
+void mergeSort(Student theArray[],int first,int last){
+        if (first < last){
+
+            int mid = (first + last)/2; 
+            mergeSort(theArray, first, mid);
+            mergeSort(theArray, mid+1, last);
+            merge(theArray, first, mid, last);
+        } 
+} 
+
+
 
 
 // Function to display all record of student in an array for the staff to see
@@ -280,7 +355,7 @@ void displayRecord(Student stud[], int &count) {
     cout<<"*************************************************************************************************************************************\n\n";
     cout<<"ID        NAME                PROGRAM ENROLL              IC NUMBER        ADDRESS           GENDER    DATE OF BIRTH     PHONE NUMBER\n";
     cout<<"-------------------------------------------------------------------------------------------------------------------------------------\n";
-    readFile(stud, count);
+    //readFile(stud, count);
     for (int i = 0; i < count; i++) {
     cout<<left<<setw(10)<<stud[i].id
         <<setw(20)<<stud[i].name
