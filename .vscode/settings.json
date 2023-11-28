@@ -8,6 +8,9 @@
         "ios": "cpp",
         "xmemory": "cpp",
         "limits": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "*.tcc": "cpp",
+        "unordered_map": "cpp",
+        "string_view": "cpp"
     }
 }
