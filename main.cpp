@@ -357,14 +357,14 @@ void displayRecord(Student stud[], int &count) {
     cout<<"-------------------------------------------------------------------------------------------------------------------------------------\n";
     //readFile(stud, count);
     for (int i = 0; i < count; i++) {
-    cout<<left<<setw(10)<<stud[i].id
-        <<setw(20)<<stud[i].name
-        <<setw(28)<<stud[i].programEnroll
-        <<setw(17)<<stud[i].ic
-        <<setw(18)<<stud[i].address
-        <<setw(10)<<stud[i].gender
-        <<setw(18)<<stud[i].DOB               
-        <<setw(15)<<stud[i].phoneNo<<endl;
+    cout<<left<<setw(10)<<stud[i].getID()
+        <<setw(20)<<stud[i].getName()
+        <<setw(28)<<stud[i].getProgramEnroll()
+        <<setw(17)<<stud[i].getIC()
+        <<setw(18)<<stud[i].getAddress()
+        <<setw(10)<<stud[i].getGender()
+        <<setw(18)<<stud[i].getDOB()               
+        <<setw(15)<<stud[i].getPhoneNo()<<endl;
     }
     cout<<endl<<endl;
 }
