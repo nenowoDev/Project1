@@ -24,14 +24,14 @@ class Student {
 		string getDOB();
 		
 
-		string editID(string newID);
-		string editName(string newName);
-		string editProgramEnroll(string newProg);
-        string editIC(string newIC);
-		string editAddress(string newAddress);
-        string editGender(string newGender);
-        string editPhoneNo(string newPhone);
-		string editDOB(string newDOB);
+		void editID(string newID);
+		void editName(string newName);
+		void editProgramEnroll(string newProg);
+        void editIC(string newIC);
+		void editAddress(string newAddress);
+        void editGender(string newGender);
+        void editPhoneNo(string newPhone);
+		void editDOB(string newDOB);
 
 
         friend void readFile(Student[], int&);

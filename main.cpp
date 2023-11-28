@@ -127,6 +127,152 @@ void del(Student stud[], int &count) {
     	
 }
 
+// Function to delete studen record
+
+
+void edit(Student stud[],int &count,int index=0){
+
+    if(index==0){
+
+        cout<<"***********************************************************************\n";
+        cout<<"                        EDIT STUDENT RECORD\n";
+        cout<<"***********************************************************************\n\n";
+        string studID;
+        cout<<"\n\n\n\t\t ENTER STUDENT ID : ";
+        cin>>studID;
+        system("cls");
+        int value=0;
+        for(int i=0;i<count;i++){
+            if(stud[i].getID() == studID){
+                index=i;
+                value=1;
+            }
+        }
+
+        system("cls");
+        cout<<"***********************************************************************\n";
+        cout<<"                        EDIT STUDENT RECORD\n";
+        cout<<"***********************************************************************\n\n";
+        if(value==0){
+        	cout<<"\n\n\n\t\t\tRECORD NOT FOUND!\n\n\n\n\n";
+             
+        } 
+    	else
+        	cout<<"\n\n\n\t\tTHE RECORD WAS FOUND SUCCESSFULLY\n\n\n\n\n"<<index;
+
+    }
+
+    if(index!=0){
+
+       
+        
+        system("cls");
+        cout<<"***********************************************************************\n";
+        cout<<"                        EDIT STUDENT RECORD\n";
+        cout<<"***********************************************************************\n\n";
+        cout<<setw(25)<<left<<"[1] ID"                <<stud[index].getID()<<"\n";
+        cout<<setw(25)<<left<<"[2] NAME"              <<stud[index].getName()<<"\n";
+        cout<<setw(25)<<left<<"[3] PROGRAMME"         <<stud[index].getProgramEnroll()<<"\n";
+        cout<<setw(25)<<left<<"[4] IC NUMBER"         <<stud[index].getIC()<<"\n";
+        cout<<setw(25)<<left<<"[5] ADDRESS"           <<stud[index].getAddress()<<"\n";
+        cout<<setw(25)<<left<<"[6] GENDER"            <<stud[index].getGender()<<"\n";
+        cout<<setw(25)<<left<<"[7] DATE OF BIRTH"     <<stud[index].getDOB()<<"\n";
+        cout<<setw(25)<<left<<"[8] PHONE NUMBER"      <<stud[index].getPhoneNo()<<"\n";
+        cout<<setw(25)<<left<<"[9] EXIT\n";
+
+
+        cout<<"\n\n\n\t\t CHOOSE ATTRIBUTES TO EDIT (1-8) : ";
+        int choice;
+        cin>>choice;
+        
+
+
+        if(choice<1||choice>9){
+            edit(stud,count,index);
+        }
+
+        else if(choice==1){
+            cout<<"\n\n\t\t OLD ID       -> "<<stud[index].getID()<<"\n";
+            cout<<"\t\t ENTER NEW ID -> ";
+            string newvalue;
+            cin.ignore();
+            getline(cin,newvalue);
+            stud[index].editID(newvalue);
+
+        }
+        else if(choice==2){
+            cout<<"\n\n\t\t OLD NAME       -> "<<stud[index].getName()<<"\n";
+            cout<<"\t\t ENTER NEW NAME -> ";
+            string newvalue;
+            cin.ignore();
+            getline(cin,newvalue);
+            stud[index].editName(newvalue);
+
+        }
+        else if(choice==3){
+            cout<<"\n\n\t\t OLD PROGRAMME       -> "<<stud[index].getProgramEnroll()<<"\n";
+            cout<<"\t\t ENTER NEW PROGRAMME -> ";
+            string newvalue;
+            cin.ignore();
+            getline(cin,newvalue);
+            stud[index].editProgramEnroll(newvalue);
+
+        }
+        else if(choice==4){
+            cout<<"\n\n\t\t OLD IC       -> "<<stud[index].getIC()<<"\n";
+            cout<<"\t\t ENTER NEW IC -> ";
+            string newvalue;
+            cin.ignore();
+            getline(cin,newvalue);
+            stud[index].editIC(newvalue);
+
+        }
+        else if(choice==5){
+            cout<<"\n\n\t\t OLD ADDRESS       -> "<<stud[index].getAddress()<<"\n";
+            cout<<"\t\t ENTER NEW ID -> ";
+            string newvalue;
+            cin.ignore();
+            getline(cin,newvalue);
+            stud[index].editID(newvalue);
+
+        }
+        else if(choice==6){
+            cout<<"\n\n\t\t OLD GENDER       -> "<<stud[index].getGender()<<"\n";
+            cout<<"\t\t ENTER NEW GENDER -> ";
+            string newvalue;
+            cin.ignore();
+            getline(cin,newvalue);
+            stud[index].editGender(newvalue);
+
+        }
+        else if(choice==7){
+            cout<<"\n\n\t\t OLD DATE OF BIRTH       -> "<<stud[index].getDOB()<<"\n";
+            cout<<"\t\t ENTER NEW DATE OF BIRTH -> ";
+            string newvalue;
+            cin.ignore();
+            getline(cin,newvalue);
+            stud[index].editDOB(newvalue);
+
+        }
+        else if(choice==8){
+            cout<<"\n\n\t\t OLD PHONE No       -> "<<stud[index].getPhoneNo()<<"\n";
+            cout<<"\t\t ENTER NEW PHONE No -> ";
+            string newvalue;
+            cin.ignore();
+            getline(cin,newvalue);
+            stud[index].editPhoneNo(newvalue);
+
+        }
+        
+        
+
+
+    }
+
+
+}
+
+
 // Function to display all record of student in an array for the staff to see
 void displayRecord(Student stud[], int &count) {
     cout<<"*************************************************************************************************************************************\n";
@@ -204,8 +350,8 @@ void Staff(Student stud[], int &count) {
     {
     	case 1: add(stud, count);
             break;
-        // case 2: edit(stud, count);
-        //     break;
+        case 2: edit(stud, count);
+             break;
         case 3: del(stud, count);
         	break;
         case 4: displayRecord(stud, count);
