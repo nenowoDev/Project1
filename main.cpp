@@ -15,6 +15,30 @@ void Staff(Student [], int &count);
 // Function to handle student operations
 void Stud(Student [], int &count);
 
+//Insertion sort
+// void insertion (Student Data[], int n) {
+//     Student temp;
+//     int X, last;
+//     for (last = n-1; last >= 1; last--)
+//     {
+//         X = 0;
+//         for (int p = 1; p <= last; ++p) 
+//         {
+//             if (Data[p] < Data[X])
+//                 X = p;
+//         }
+//         temp = Data[last];
+//         Data[last] = Data[X];
+//         Data[X] = temp;
+
+//         // cout << "Pass " << n - last << " : ";
+//         // for (int i = 0; i < n; i++)
+//         //     cout << Data[i] << " ";
+//         // cout << endl;
+//     }
+// }
+
+
 // Function to read data from a file and store it in an array of Student objects
 void readFile(Student stud[], int &count) {
     int n = 0;
@@ -146,7 +170,19 @@ void displayRecord(Student stud[], int &count) {
         <<setw(15)<<stud[i].phoneNo<<endl;
     }
     cout<<endl<<endl;
-}
+
+//     system("cls");
+//     cout<<"*************************************************************************************************************************************\n";
+//     cout<<"                                                       DISPLAY ALL RECORD\n";
+//     cout<<"*************************************************************************************************************************************\n\n";
+//     string value;
+//     cout<<"\t\t\tDo you wish to sort the list (Y/N) : ";
+//     cin >> value;
+//     if(value== "Y")
+//     	insertion(stud, count);
+// 	else
+//     	cout<<"\n\n\n\t\tTHE RECORD NOT SORTED\n\n\n\n\n";
+ }
 
 // Function to display the main menu and handle user input
 void menu(Student stud[], int &count) {
