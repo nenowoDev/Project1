@@ -7,6 +7,10 @@
         "xlocale": "cpp",
         "ios": "cpp",
         "xmemory": "cpp",
-        "limits": "cpp"
+        "limits": "cpp",
+        "ostream": "cpp",
+        "*.tcc": "cpp",
+        "unordered_map": "cpp",
+        "string_view": "cpp"
     }
 }
