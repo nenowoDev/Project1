@@ -551,6 +551,18 @@ void mergeSort(Student theArray[],int first,int last){
         } 
 } 
 
+void selectionSort(int Data[], int n){
+    for (int last = n-1; last >= 1; --last){
+        int largestIndex = 0;
+        for (int p=1;p <= last; ++p){
+            if (Data[p]>Data[largestIndex])
+                largestIndex = p;
+        } 
+        swap(Data[largestIndex],Data[last]);
+    }  
+} 
+
+
 
 
 
