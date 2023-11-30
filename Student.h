@@ -22,18 +22,6 @@ class Student {
         string getGender();
         string getPhoneNo();
 		string getDOB();
-		
-
-
-		// string editID(string newID);
-		// string editName(string newName);
-		// string editProgramEnroll(string newProg);
-        // string editIC(string newIC);
-		// string editAddress(string newAddress);
-        // string editGender(string newGender);
-        // string editPhoneNo(string newPhone);
-		// string editDOB(string newDOB);
-
 
 		void editID(string newID);
 		void editName(string newName);
@@ -44,12 +32,13 @@ class Student {
         void editPhoneNo(string newPhone);
 		void editDOB(string newDOB);
 
+		void Insertion(Student[], int);
+		void BubbleSort(Student[], int);
 
-        friend void readFile(Student[], int&);
-		friend void add(Student [], int&);
+        void readFile(Student[], int&);
+		void add(Student [], int&);
+	    void del(Student [], int&);
 		void displayRecord(Student [], int &);
-	    friend void del(Student [], int&);
-
 };
 
 
