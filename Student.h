@@ -39,7 +39,7 @@ class Student {
 		void add(Student [], int&);
 	    void del(Student [], int&);
 		void displayRecord(Student [], int &);
+		
 };
-
 
 #endif
