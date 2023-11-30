@@ -16,35 +16,49 @@ void Staff(Student [], int &count);
 // Function to handle student operations
 void Stud(Student [], int &count);
 
-<<<<<<< HEAD
-//Insertion sort
-// void insertion (Student Data[], int n) {
-//     Student temp;
-//     int X, last;
-//     for (last = n-1; last >= 1; last--)
-//     {
-//         X = 0;
-//         for (int p = 1; p <= last; ++p) 
-//         {
-//             if (Data[p] < Data[X])
-//                 X = p;
-//         }
-//         temp = Data[last];
-//         Data[last] = Data[X];
-//         Data[X] = temp;
+//Bubble Sort
+void BubbleSort(Student data[], int listSize)
+{
+    Student tempValue;
+    bool sorted = false;
+    for(int pass = 1; (pass < listSize) && !sorted; ++pass) 
+    {   
+        sorted = true;
+        for(int x = 0; x < listSize - pass; x++)
+        {
+            if(data[x].getID() > data[x+1].getID())
+            {
+                tempValue = data[x];
+                data[x] = data[x+1];
+                data[x+1] = tempValue;
+                sorted = false;
+            }
+        }
+    }
+}
 
-//         // cout << "Pass " << n - last << " : ";
-//         // for (int i = 0; i < n; i++)
-//         //     cout << Data[i] << " ";
-//         // cout << endl;
-//     }
-// }
-=======
+//Insertion Sort
+void Insertion (Student stud[], int n) {
+    Student temp;
+    int X, last;
+    for (last = n-1; last >= 1; last--)
+    {
+        X = 0;
+        for (int p = 1; p <= last; ++p) 
+        {
+            if (stud[p].getID() > stud[X].getID())
+                X = p;
+        }
+        temp = stud[last];
+        stud[last] = stud[X];
+        stud[X] = temp;
+    }
+}
+
 void displayRecord(Student[],int&);
 void mergeSort(Student[],int,int);
 void merge(Student[],int,int,int);
 
->>>>>>> 7b32ba4294ab4e81b17d85442f5f78830b3302e9
 
 
 // Function to read data from a file and store it in an array of Student objects
@@ -110,6 +124,10 @@ void add(Student stud[], int &count) {
     cout<<"                          CREATE NEW RECORD\n";
     cout<<"***********************************************************************\n\n";
     cout<<"\n\n\n\t\t\tSTUDENT DETAILS RECORDED\n\n\n\n\n";	
+    Insertion(stud, count);
+    readFile(stud, count);
+    displayRecord(stud, count);
+
 }
 
 //Function to delete student details
@@ -610,18 +628,6 @@ void displayRecord(Student stud[], int &count) {
         <<setw(15)<<stud[i].getPhoneNo()<<endl;
     }
     cout<<endl<<endl;
-
-//     system("cls");
-//     cout<<"*************************************************************************************************************************************\n";
-//     cout<<"                                                       DISPLAY ALL RECORD\n";
-//     cout<<"*************************************************************************************************************************************\n\n";
-//     string value;
-//     cout<<"\t\t\tDo you wish to sort the list (Y/N) : ";
-//     cin >> value;
-//     if(value== "Y")
-//     	insertion(stud, count);
-// 	else
-//     	cout<<"\n\n\n\t\tTHE RECORD NOT SORTED\n\n\n\n\n";
  }
 
 // Function to display the main menu and handle user input
