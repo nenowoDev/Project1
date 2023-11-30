@@ -34,11 +34,13 @@ class Student {
 
 		void InsertionSort(Student[], int);
 		void BubbleSort(Student[], int);
+		void SelectionSort(Student[], int);
 
         void readFile(Student[], int&);
 		void add(Student [], int&);
 	    void del(Student [], int&);
-		void displayRecord(Student [], int &);
+		void displayRecord(Student [], int&);
+		void display(Student[], int&);
 
 };
 
