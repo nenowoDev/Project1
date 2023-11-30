@@ -32,14 +32,14 @@ class Student {
         void editPhoneNo(string newPhone);
 		void editDOB(string newDOB);
 
-		void Insertion(Student[], int);
+		void InsertionSort(Student[], int);
 		void BubbleSort(Student[], int);
 
         void readFile(Student[], int&);
 		void add(Student [], int&);
 	    void del(Student [], int&);
 		void displayRecord(Student [], int &);
-		
+
 };
 
 #endif
