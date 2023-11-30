@@ -24,7 +24,7 @@ class Student {
 		string getDOB();
 		
 
-<<<<<<< HEAD
+
 		// string editID(string newID);
 		// string editName(string newName);
 		// string editProgramEnroll(string newProg);
@@ -33,7 +33,8 @@ class Student {
         // string editGender(string newGender);
         // string editPhoneNo(string newPhone);
 		// string editDOB(string newDOB);
-=======
+
+
 		void editID(string newID);
 		void editName(string newName);
 		void editProgramEnroll(string newProg);
@@ -42,15 +43,13 @@ class Student {
         void editGender(string newGender);
         void editPhoneNo(string newPhone);
 		void editDOB(string newDOB);
->>>>>>> 7b32ba4294ab4e81b17d85442f5f78830b3302e9
 
 
         friend void readFile(Student[], int&);
 		friend void add(Student [], int&);
-<<<<<<< HEAD
+		void displayRecord(Student [], int &);
 	    friend void del(Student [], int&);
-=======
->>>>>>> 7b32ba4294ab4e81b17d85442f5f78830b3302e9
+
 };
 
 
