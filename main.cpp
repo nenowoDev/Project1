@@ -6,8 +6,9 @@
 using namespace std;
 #include "Student.h"
 #include "Student.cpp"
+// #include "Staff.h"
+// #include "Staff.cpp"
 
-//static int count = 0;
 
 // Function to display the main menu
 void menu(Student [], int &count);
@@ -16,168 +17,59 @@ void Staff(Student [], int &count);
 // Function to handle student operations
 void Stud(Student [], int &count);
 
-//Bubble Sort
-void BubbleSort(Student data[], int listSize)
-{
-    Student tempValue;
-    bool sorted = false;
-    for(int pass = 1; (pass < listSize) && !sorted; ++pass) 
-    {   
-        sorted = true;
-        for(int x = 0; x < listSize - pass; x++)
-        {
-            if(data[x].getID() > data[x+1].getID())
-            {
-                tempValue = data[x];
-                data[x] = data[x+1];
-                data[x+1] = tempValue;
-                sorted = false;
-            }
+
+
+
+//void displayRecord(Student[],int&);
+
+void merge(Student theArray[], int first, int mid, int last){
+    Student tempArray[100]; 
+    int first1 = first;  
+    int last1 = mid;  
+    int first2 = mid + 1; 
+    int last2 = last; 
+    int index = first1;
+
+    for (; (first1 <= last1) && (first2 <= last2); ++index){
+        if (theArray[first1].getID() < theArray[first2].getID()){
+            tempArray[index] = theArray[first1];
+            ++first1;
         }
-    }
-}
-
-//Insertion Sort
-void Insertion (Student stud[], int n) {
-    Student temp;
-    int X, last;
-    for (last = n-1; last >= 1; last--)
-    {
-        X = 0;
-        for (int p = 1; p <= last; ++p) 
-        {
-            if (stud[p].getID() > stud[X].getID())
-                X = p;
+        else{
+            tempArray[index] = theArray[first2];
+            ++first2;
         }
-        temp = stud[last];
-        stud[last] = stud[X];
-        stud[X] = temp;
-    }
+    } 
+    for (; first1 <= last1; ++first1, ++index)
+        tempArray[index] = theArray[first1];
+    for (; first2 <= last2; ++first2, ++index)
+        tempArray[index] = theArray[first2];
+
+    for (index = first; index <= last; ++index)
+        theArray[index] = tempArray[index];
 }
 
-void displayRecord(Student[],int&);
-void mergeSort(Student[],int,int);
-void merge(Student[],int,int,int);
 
+void mergeSort(Student theArray[],int first,int last){
+        if (first < last){
 
+            int mid = (first + last)/2; 
+            mergeSort(theArray, first, mid);
+            mergeSort(theArray, mid+1, last);
+            merge(theArray, first, mid, last);
+        } 
+} 
 
-// Function to read data from a file and store it in an array of Student objects
-void readFile(Student stud[], int &count) {
-    int n = 0;
-    ifstream inp("Record.csv");
-    if (!inp) {
-         cout<<"\t\t\tFILE NOT FOUND!";
-         cout<<"\n\n";
-    }
-    else {
-        while(getline(inp, stud[n].id, ',')) {
-         	getline(inp, stud[n].name, ',');
-         	getline(inp, stud[n].programEnroll, ',');
-         	getline(inp, stud[n].ic, ',');
-         	getline(inp, stud[n].address, ',');
-			getline(inp, stud[n].gender, ',');
-            getline(inp, stud[n].DOB, ',');
-			getline(inp, stud[n].phoneNo);
-            n++;
-            //count++;
-        }
-        count = n;
-    }
-    inp.close();
-}
-
-// Function to add student details
-void add(Student stud[], int &count) {
-	cout<<"***********************************************************************\n";
-    cout<<"                          CREATE NEW RECORD\n";
-    cout<<"***********************************************************************\n\n";
-	cout<<"\n\t\t  -------------------------------\n";
-    cout<<"\t\t     ENTER THE STUDENT DETAILS\n";
-    cout<<"\t\t  -------------------------------\n\n";
-    cin.ignore();
-    cout<<"\t	ID NUMBER        -> "; getline(cin, stud[count].id); 
-    cout<<"\t	NAME             -> "; getline(cin, stud[count].name);  
-	cout<<"\t	PROGRAM ENROLL   -> "; getline(cin, stud[count].programEnroll); 
-	cout<<"\t	IC NUMBER        -> "; getline(cin, stud[count].ic); 
-	cout<<"\t	ADDRESS          -> "; getline(cin, stud[count].address); 
-	cout<<"\t	GENDER           -> "; getline(cin, stud[count].gender); 
-	cout<<"\t	DATE OF BIRTH    -> "; getline(cin, stud[count].DOB); 
-    cout<<"\t	PHONE NUMBER     -> "; getline(cin, stud[count].phoneNo);
-    cout<<endl<<endl;
-    count++;
-
-    ofstream f("Record.csv");
-    for(int i = 0; i < count; i++) {
-    	f << stud[i].getID() << "," 
-          << stud[i].getName() << "," 
-          << stud[i].getProgramEnroll() << "," 
-          << stud[i].getIC() << "," 
-          << stud[i].getAddress() << "," 
-          << stud[i].getGender() << "," 
-          << stud[i].getDOB() << ","   
-          << stud[i].getPhoneNo() << endl;     
-	}
-    f.close();
-
-    system("cls");
-    cout<<"***********************************************************************\n";
-    cout<<"                          CREATE NEW RECORD\n";
-    cout<<"***********************************************************************\n\n";
-    cout<<"\n\n\n\t\t\tSTUDENT DETAILS RECORDED\n\n\n\n\n";	
-    Insertion(stud, count);
-    readFile(stud, count);
-    displayRecord(stud, count);
-
-}
-
-//Function to delete student details
-void del(Student stud[], int &count) {
-    string id; int value = 0;
-	cout<<"***********************************************************************\n";
-    cout<<"                        DELETE STUDENT RECORD\n";
-    cout<<"***********************************************************************\n\n";
-    readFile(stud, count);
-    cout<<"\n\n\n\t\t ENTER STUDENT ID : ";
-    cin>>id;
-    system("cls");
-    int x=0;
-    for(int n = 0; n < count; n++)
-    	if(id == stud[n].getID()) {
-        	value=1;
-        	x=n;	
-        }
-	
-    if (value == 1) {
-		ofstream f("Record.csv");
-		for(int i = 0; i < count; i++) {
-    		if(i == x) 
-    			continue;		
-    		else{
-    		f << stud[i].getID() << "," 
-              << stud[i].getName() << "," 
-              << stud[i].getProgramEnroll() << "," 
-              << stud[i].getIC() << "," 
-              << stud[i].getAddress() << "," 
-              << stud[i].getGender() << "," 
-              << stud[i].getDOB() << ","   
-              << stud[i].getPhoneNo() << endl;  	
-			}		
-		}
-    	f.close();	
-	}
-
-    system("cls");
-    cout<<"***********************************************************************\n";
-    cout<<"                        DELETE STUDENT RECORD\n";
-    cout<<"***********************************************************************\n\n";
-    if(value==0)
-    	cout<<"\n\n\n\t\t\tRECORD NOT FOUND!\n\n\n\n\n"; 
-	else
-    	cout<<"\n\n\n\t\tTHE RECORD WAS DELETED SUCCESSFULLY\n\n\n\n\n";
-    	
-}
-
-// Function to delete studen record
+void selectionSort(int Data[], int n){
+    for (int last = n-1; last >= 1; --last){
+        int largestIndex = 0;
+        for (int p=1;p <= last; ++p){
+            if (Data[p]>Data[largestIndex])
+                largestIndex = p;
+        } 
+        swap(Data[largestIndex],Data[last]);
+    }  
+} 
 
 
 void edit(Student stud[],int &count,int index=-1){
@@ -532,7 +424,7 @@ void search(Student stud[],int &count){
 
         system("cls");
         cout<<"\n\n\t\tOCCURENCE OF \""<<searchwhat<<"\"\n";
-        displayRecord(temp,tempc);
+        stud->displayRecord(temp,tempc);
 
 
     }   
@@ -541,94 +433,6 @@ void search(Student stud[],int &count){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void merge(Student theArray[], int first, int mid, int last){
-    Student tempArray[100]; 
-    int first1 = first;  
-    int last1 = mid;  
-    int first2 = mid + 1; 
-    int last2 = last; 
-    int index = first1;
-
-    for (; (first1 <= last1) && (first2 <= last2); ++index){
-        if (theArray[first1].getID() < theArray[first2].getID()){
-            tempArray[index] = theArray[first1];
-            ++first1;
-        }
-        else{
-            tempArray[index] = theArray[first2];
-            ++first2;
-        }
-    } 
-    for (; first1 <= last1; ++first1, ++index)
-        tempArray[index] = theArray[first1];
-    for (; first2 <= last2; ++first2, ++index)
-        tempArray[index] = theArray[first2];
-
-    for (index = first; index <= last; ++index)
-        theArray[index] = tempArray[index];
-}
-
-
-void mergeSort(Student theArray[],int first,int last){
-        if (first < last){
-
-            int mid = (first + last)/2; 
-            mergeSort(theArray, first, mid);
-            mergeSort(theArray, mid+1, last);
-            merge(theArray, first, mid, last);
-        } 
-} 
-
-void selectionSort(int Data[], int n){
-    for (int last = n-1; last >= 1; --last){
-        int largestIndex = 0;
-        for (int p=1;p <= last; ++p){
-            if (Data[p]>Data[largestIndex])
-                largestIndex = p;
-        } 
-        swap(Data[largestIndex],Data[last]);
-    }  
-} 
-
-
-
-
-
-// Function to display all record of student in an array for the staff to see
-void displayRecord(Student stud[], int &count) {
-    cout<<"*************************************************************************************************************************************\n";
-    cout<<"                                                       DISPLAY ALL RECORD\n";
-    cout<<"*************************************************************************************************************************************\n\n";
-    cout<<"ID        NAME                PROGRAM ENROLL              IC NUMBER        ADDRESS           GENDER    DATE OF BIRTH     PHONE NUMBER\n";
-    cout<<"-------------------------------------------------------------------------------------------------------------------------------------\n";
-    //readFile(stud, count);
-    for (int i = 0; i < count; i++) {
-    cout<<left<<setw(10)<<stud[i].getID()
-        <<setw(20)<<stud[i].getName()
-        <<setw(28)<<stud[i].getProgramEnroll()
-        <<setw(17)<<stud[i].getIC()
-        <<setw(18)<<stud[i].getAddress()
-        <<setw(10)<<stud[i].getGender()
-        <<setw(18)<<stud[i].getDOB()               
-        <<setw(15)<<stud[i].getPhoneNo()<<endl;
-    }
-    cout<<endl<<endl;
- }
 
 // Function to display the main menu and handle user input
 void menu(Student stud[], int &count) {
@@ -684,13 +488,13 @@ void Staff(Student stud[], int &count) {
     system("cls");
     switch(n)
     {
-    	case 1: add(stud, count);
+    	case 1: stud->add(stud, count);
             break;
         case 2: edit(stud, count);
              break;
-        case 3: del(stud, count);
+        case 3: stud->del(stud, count);
         	break;
-        case 4: displayRecord(stud, count);
+        case 4: stud->displayRecord(stud, count);
             break;
         case 5: menu(stud, count);
             break;
@@ -732,7 +536,7 @@ int main() {
     int count = 0;
     Student stud[50];
 
-    readFile(stud, count);
+    stud->readFile(stud, count);
     
     menu(stud, count);
    
