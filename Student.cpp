@@ -122,8 +122,16 @@ void Student :: add(Student stud[], int &count) {
     cout<<"***********************************************************************\n";
     cout<<"                          CREATE NEW RECORD\n";
     cout<<"***********************************************************************\n\n";
-    cout<<"\n\n\n\t\t\tSTUDENT DETAILS RECORDED\n\n\n\n\n";	
-    Insertion(stud, count);
+    cout<<"\n\n\n\t\t\tSTUDENT DETAILS RECORDED\n\n\n";	
+    char y;
+    cout<<"\t\tDo you want to sort the student list (Y/N) : ";
+    cin>>y;
+    if (y=='Y' || y=='y') {
+        Insertion(stud, count);
+        cout<<"\n\n\t\tThe student list is sorted\n\n\n";
+    } 
+    else 
+        cout<<"\n\n\t\t\tThe list is not sorted\n\n\n";
 }
 
 //Function to delete student details
@@ -168,10 +176,19 @@ void Student :: del(Student stud[], int &count) {
     cout<<"***********************************************************************\n\n";
     if(value==0)
     	cout<<"\n\n\n\t\t\tRECORD NOT FOUND!\n\n\n\n\n"; 
-	else
-    	cout<<"\n\n\n\t\tTHE RECORD WAS DELETED SUCCESSFULLY\n\n\n\n\n";
-        readFile(stud, count);
-        BubbleSort(stud, count); 	
+	else {
+        cout<<"\n\n\n\t\tTHE RECORD WAS DELETED SUCCESSFULLY\n\n\n";
+        char y;
+        cout<<"\tDo you want to sort the student list (Y/N) : ";
+        cin>>y;
+        if (y=='Y' || y=='y') {
+            readFile(stud, count);
+            BubbleSort(stud, count); 
+            cout<<"\n\n\t\tThe student list is sorted\n\n\n";
+        } 
+        else 
+            cout<<"\n\n\t\t\tThe list is not sorted\n\n\n";	
+    }
 }
 
 // Function to display all record of student in an array for the staff to see
