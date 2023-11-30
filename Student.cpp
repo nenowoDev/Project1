@@ -43,7 +43,7 @@ void Student :: BubbleSort(Student data[], int n)
 }
 
 //Insertion Sort
-void Student :: Insertion (Student stud[], int n) {
+void Student :: InsertionSort(Student stud[], int n) {
     Student temp;
     int X, last;
     for (last = n-1; last >= 1; last--)
@@ -127,7 +127,7 @@ void Student :: add(Student stud[], int &count) {
     cout<<"\t\tDo you want to sort the student list (Y/N) : ";
     cin>>y;
     if (y=='Y' || y=='y') {
-        Insertion(stud, count);
+        InsertionSort(stud, count);
         cout<<"\n\n\t\tThe student list is sorted\n\n\n";
     } 
     else 
