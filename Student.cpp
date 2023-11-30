@@ -78,7 +78,6 @@ void Student :: readFile(Student stud[], int &count) {
             getline(inp, stud[n].DOB, ',');
 			getline(inp, stud[n].phoneNo);
             n++;
-            //count++;
         }
         count = n;
     }
