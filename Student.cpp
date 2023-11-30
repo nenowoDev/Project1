@@ -60,6 +60,26 @@ void Student :: InsertionSort(Student stud[], int n) {
     }
 }
 
+//Selection Sort
+void Student :: SelectionSort(Student Data[], int n) 
+{
+    for (int last = n-1; last >= 1; --last)
+    {
+        int largestIndex = 0;
+        for (int p = 1; p <= last; ++p)
+        {
+            if (Data[p].getID() > Data[largestIndex].getID())
+                largestIndex = p;
+        }
+        swap(Data[largestIndex], Data[last]);
+    }
+}
+void swap(int& x, int& y) {
+    int temp = x;
+    x = y;
+    y = temp;
+}
+
 // Function to read data from a file and store it in an array of Student objects
 void Student :: readFile(Student stud[], int &count) {
     int n = 0;
@@ -127,10 +147,13 @@ void Student :: add(Student stud[], int &count) {
     cin>>y;
     if (y=='Y' || y=='y') {
         InsertionSort(stud, count);
-        cout<<"\n\n\t\tThe student list is sorted\n\n\n";
+        cout<<"\n\n\t\t\tThe student list is sorted\n\n\n";
     } 
     else 
         cout<<"\n\n\t\t\tThe list is not sorted\n\n\n";
+
+    system("cls");
+    displayRecord(stud, count);
 }
 
 //Function to delete student details
@@ -185,11 +208,16 @@ void Student :: del(Student stud[], int &count) {
             BubbleSort(stud, count); 
             cout<<"\n\n\t\tThe student list is sorted\n\n\n";
         } 
-        else 
+        else {
+            readFile(stud, count);
             cout<<"\n\n\t\t\tThe list is not sorted\n\n\n";	
+        }     
     }
-}
 
+    system("cls");
+    displayRecord(stud, count);
+}
+ 
 // Function to display all record of student in an array for the staff to see
 void Student :: displayRecord(Student stud[], int &count) {
     cout<<"*************************************************************************************************************************************\n";
@@ -197,16 +225,36 @@ void Student :: displayRecord(Student stud[], int &count) {
     cout<<"*************************************************************************************************************************************\n\n";
     cout<<"ID        NAME                PROGRAM ENROLL              IC NUMBER        ADDRESS           GENDER    DATE OF BIRTH     PHONE NUMBER\n";
     cout<<"-------------------------------------------------------------------------------------------------------------------------------------\n";
-    //readFile(stud, count);
     for (int i = 0; i < count; i++) {
-    cout<<left<<setw(10)<<stud[i].getID()
-        <<setw(20)<<stud[i].getName()
-        <<setw(28)<<stud[i].getProgramEnroll()
-        <<setw(17)<<stud[i].getIC()
-        <<setw(18)<<stud[i].getAddress()
-        <<setw(10)<<stud[i].getGender()
-        <<setw(18)<<stud[i].getDOB()               
-        <<setw(15)<<stud[i].getPhoneNo()<<endl;
+        cout<<left<<setw(10)<<stud[i].getID()
+            <<setw(20)<<stud[i].getName()
+            <<setw(28)<<stud[i].getProgramEnroll()
+            <<setw(17)<<stud[i].getIC()
+            <<setw(18)<<stud[i].getAddress()
+            <<setw(10)<<stud[i].getGender()
+            <<setw(18)<<stud[i].getDOB()               
+            <<setw(15)<<stud[i].getPhoneNo()<<endl;
     }
     cout<<endl<<endl;
+}
+
+// Function to display sorted record
+void Student :: display(Student stud[], int &count) {
+    displayRecord(stud, count);
+    system("PAUSE");
+    system("cls");
+    char y;
+    cout<<"*************************************************************************************************************************************\n";
+    cout<<"                                                       DISPLAY ALL RECORD\n";
+    cout<<"*************************************************************************************************************************************\n\n";
+    cout<<"\n\n\n\t\tDo you want to sort the student list (Y/N) : ";
+    cin>>y;
+    if (y=='Y' || y=='y') {
+        SelectionSort(stud, count);
+        cout<<"\n\n\t\t\tThe student list is sorted\n\n\n";
+        system("cls");
+        displayRecord(stud, count);
+    } 
+    else 
+        cout<<"\n\n\t\t\tThe list is not sorted\n\n\n";
 }
