@@ -494,7 +494,7 @@ void Staff(Student stud[], int &count) {
              break;
         case 3: stud->del(stud, count);
         	break;
-        case 4: stud->displayRecord(stud, count);
+        case 4: stud->display(stud, count);
             break;
         case 5: menu(stud, count);
             break;
