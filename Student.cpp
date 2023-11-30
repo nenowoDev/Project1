@@ -22,14 +22,14 @@ void Student::editPhoneNo(string newPhone)            {phoneNo=newPhone;}
 void Student::editDOB(string newDOB)                  {DOB=newDOB;}
 
 //Bubble Sort
-void Student :: BubbleSort(Student data[], int listSize)
+void Student :: BubbleSort(Student data[], int n)
 {
     Student tempValue;
     bool sorted = false;
-    for(int pass = 1; (pass < listSize) && !sorted; ++pass) 
+    for(int pass = 1; (pass < n) && !sorted; ++pass) 
     {   
         sorted = true;
-        for(int x = 0; x < listSize - pass; x++)
+        for(int x = 0; x < n - pass; x++)
         {
             if(data[x].getID() > data[x+1].getID())
             {
