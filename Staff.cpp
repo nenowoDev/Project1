@@ -33,7 +33,6 @@ void Staff::merge(Student theArray[], int first, int mid, int last){
         theArray[index] = tempArray[index];
 }
 
-
 void Staff::mergeSort(Student theArray[],int first,int last){
         if (first < last){
 
@@ -43,8 +42,6 @@ void Staff::mergeSort(Student theArray[],int first,int last){
             merge(theArray, first, mid, last);
         } 
 } 
-
-
 
 
 void Staff::edit(Student stud[],int &count,int index=-1){
@@ -75,7 +72,6 @@ void Staff::edit(Student stud[],int &count,int index=-1){
         cout<<"***********************************************************************\n\n";
         if(value==0){
         	cout<<"\n\n\n\t\t\tRECORD NOT FOUND!\n\n\n\n\n";
-             
         } 
     	else{
         	cout<<"\n\n\n\t\tTHE RECORD WAS FOUND SUCCESSFULLY\n\n\n\n\n";
@@ -88,8 +84,6 @@ void Staff::edit(Student stud[],int &count,int index=-1){
                 cout<<"-------------------------------------------------------------------------------------------------------------------------------------\n";
                 
                 for (int i=0;i<c;i++){
-                    
-                    
                     cout<<left
                     <<setw(6)<<tempindex[i]
                     <<setw(10)<<stud[tempindex[i]].getID()
@@ -100,21 +94,15 @@ void Staff::edit(Student stud[],int &count,int index=-1){
                     <<setw(10)<<stud[tempindex[i]].getGender()
                     <<setw(18)<<stud[tempindex[i]].getDOB()               
                     <<setw(15)<<stud[tempindex[i]].getPhoneNo()<<endl;
-
                 }
-
                 cout<<"\t\t\nCHOOSE INDEX :";
                 cin>>index;
             }
-       
         }
-
     }
 
     if(index!=-1){
 
-       
-        
         system("cls");
         cout<<"***********************************************************************\n";
         cout<<"                        EDIT STUDENT RECORD\n";
@@ -129,17 +117,13 @@ void Staff::edit(Student stud[],int &count,int index=-1){
         cout<<setw(25)<<left<<"[8] PHONE NUMBER"      <<stud[index].getPhoneNo()<<"\n";
         cout<<setw(25)<<left<<"[9] EXIT\n";
 
-
         cout<<"\n\n\n\t\t CHOOSE ATTRIBUTES TO EDIT (1-8) : ";
         int choice;
         cin>>choice;
-        
-
 
         if(choice<1||choice>9){
             edit(stud,count,index);
         }
-
         else if(choice==1){
             cout<<"\n\n\t\t OLD ID       -> "<<stud[index].getID()<<"\n";
             cout<<"\t\t ENTER NEW ID -> ";
@@ -147,7 +131,6 @@ void Staff::edit(Student stud[],int &count,int index=-1){
             cin.ignore();
             getline(cin,newvalue);
             stud[index].editID(newvalue);
-
         }
         else if(choice==2){
             cout<<"\n\n\t\t OLD NAME       -> "<<stud[index].getName()<<"\n";
@@ -156,7 +139,6 @@ void Staff::edit(Student stud[],int &count,int index=-1){
             cin.ignore();
             getline(cin,newvalue);
             stud[index].editName(newvalue);
-
         }
         else if(choice==3){
             cout<<"\n\n\t\t OLD PROGRAMME       -> "<<stud[index].getProgramEnroll()<<"\n";
@@ -165,7 +147,6 @@ void Staff::edit(Student stud[],int &count,int index=-1){
             cin.ignore();
             getline(cin,newvalue);
             stud[index].editProgramEnroll(newvalue);
-
         }
         else if(choice==4){
             cout<<"\n\n\t\t OLD IC       -> "<<stud[index].getIC()<<"\n";
@@ -174,7 +155,6 @@ void Staff::edit(Student stud[],int &count,int index=-1){
             cin.ignore();
             getline(cin,newvalue);
             stud[index].editIC(newvalue);
-
         }
         else if(choice==5){
             cout<<"\n\n\t\t OLD ADDRESS       -> "<<stud[index].getAddress()<<"\n";
@@ -183,7 +163,6 @@ void Staff::edit(Student stud[],int &count,int index=-1){
             cin.ignore();
             getline(cin,newvalue);
             stud[index].editID(newvalue);
-
         }
         else if(choice==6){
             cout<<"\n\n\t\t OLD GENDER       -> "<<stud[index].getGender()<<"\n";
@@ -192,7 +171,6 @@ void Staff::edit(Student stud[],int &count,int index=-1){
             cin.ignore();
             getline(cin,newvalue);
             stud[index].editGender(newvalue);
-
         }
         else if(choice==7){
             cout<<"\n\n\t\t OLD DATE OF BIRTH       -> "<<stud[index].getDOB()<<"\n";
@@ -201,7 +179,6 @@ void Staff::edit(Student stud[],int &count,int index=-1){
             cin.ignore();
             getline(cin,newvalue);
             stud[index].editDOB(newvalue);
-
         }
         else if(choice==8){
             cout<<"\n\n\t\t OLD PHONE No       -> "<<stud[index].getPhoneNo()<<"\n";
@@ -210,7 +187,6 @@ void Staff::edit(Student stud[],int &count,int index=-1){
             cin.ignore();
             getline(cin,newvalue);
             stud[index].editPhoneNo(newvalue);
-
         }
         
         if(choice>=1&&choice<=8){
@@ -230,15 +206,9 @@ void Staff::edit(Student stud[],int &count,int index=-1){
                     << stud[i].getPhoneNo() << endl;     
 	            }
             f.close();
-
         }
-
-
     }
-
-
 }
-
 
 
 
