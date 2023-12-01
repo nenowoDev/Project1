@@ -9,20 +9,12 @@ using namespace std;
 #include "Staff.h"
 #include "Staff.cpp"
 
-
 // Function to display the main menu
 void menu(Student [], int &count,Staff admin);
 // Function to handle staff operations
 void Staffmenu(Student [], int &count,Staff admin);
 // Function to handle student operations
 void Stud(Student [], int &count,Staff admin);
-
-
-
-
-//void displayRecord(Student[],int&);
-
-
 
 
 // Function to display the main menu and handle user input
