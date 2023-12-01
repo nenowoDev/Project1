@@ -403,10 +403,6 @@ void Staff::search(Student stud[],int &count){
             }
         }
 
-
-        
-
-
         system("cls");
         cout<<"\n\n\t\tOCCURENCE OF \""<<searchwhat<<"\"\n";
         stud->displayRecord(temp,tempc);
