@@ -43,7 +43,66 @@ void Staff::mergeSort(Student theArray[],int first,int last){
         } 
 } 
 
+//Bubble Sort
+void Staff :: BubbleSort(Student data[], int n)
+{
+    Student tempValue;
+    bool sorted = false;
+    for(int pass = 1; (pass < n) && !sorted; ++pass) 
+    {   
+        sorted = true;
+        for(int x = 0; x < n - pass; x++)
+        {
+            if(data[x].getID() > data[x+1].getID())
+            {
+                tempValue = data[x];
+                data[x] = data[x+1];
+                data[x+1] = tempValue;
+                sorted = false;
+            }
+        }
+    }
+}
 
+//Insertion Sort
+void Staff :: InsertionSort(Student stud[], int n) {
+    Student temp;
+    int X, last;
+    for (last = n-1; last >= 1; last--)
+    {
+        X = 0;
+        for (int p = 1; p <= last; ++p) 
+        {
+            if (stud[p].getID() > stud[X].getID())
+                X = p;
+        }
+        temp = stud[last];
+        stud[last] = stud[X];
+        stud[X] = temp;
+    }
+}
+
+//Selection Sort
+void Staff :: SelectionSort(Student Data[], int n) 
+{
+    for (int last = n-1; last >= 1; --last)
+    {
+        int largestIndex = 0;
+        for (int p = 1; p <= last; ++p)
+        {
+            if (Data[p].getID() > Data[largestIndex].getID())
+                largestIndex = p;
+        }
+        swap(Data[largestIndex], Data[last]);
+    }
+}
+void swap(int& x, int& y) {
+    int temp = x;
+    x = y;
+    y = temp;
+}
+
+// Function to edit student record
 void Staff::edit(Student stud[],int &count,int index=-1){
 
     if(index==-1){
@@ -210,68 +269,7 @@ void Staff::edit(Student stud[],int &count,int index=-1){
     }
 }
 
-
-
-//Bubble Sort
-void Staff :: BubbleSort(Student data[], int n)
-{
-    Student tempValue;
-    bool sorted = false;
-    for(int pass = 1; (pass < n) && !sorted; ++pass) 
-    {   
-        sorted = true;
-        for(int x = 0; x < n - pass; x++)
-        {
-            if(data[x].getID() > data[x+1].getID())
-            {
-                tempValue = data[x];
-                data[x] = data[x+1];
-                data[x+1] = tempValue;
-                sorted = false;
-            }
-        }
-    }
-}
-
-//Insertion Sort
-void Staff :: InsertionSort(Student stud[], int n) {
-    Student temp;
-    int X, last;
-    for (last = n-1; last >= 1; last--)
-    {
-        X = 0;
-        for (int p = 1; p <= last; ++p) 
-        {
-            if (stud[p].getID() > stud[X].getID())
-                X = p;
-        }
-        temp = stud[last];
-        stud[last] = stud[X];
-        stud[X] = temp;
-    }
-}
-
-//Selection Sort
-void Staff :: SelectionSort(Student Data[], int n) 
-{
-    for (int last = n-1; last >= 1; --last)
-    {
-        int largestIndex = 0;
-        for (int p = 1; p <= last; ++p)
-        {
-            if (Data[p].getID() > Data[largestIndex].getID())
-                largestIndex = p;
-        }
-        swap(Data[largestIndex], Data[last]);
-    }
-}
-void swap(int& x, int& y) {
-    int temp = x;
-    x = y;
-    y = temp;
-}
-
-// Function to read data from a file and store it in an array of Student objects
+// Function to read data from a file
 void Staff :: readFile(Student stud[], int &count) {
     int n = 0;
     ifstream inp("Record.csv");
@@ -315,6 +313,8 @@ void Staff :: add(Student stud[], int &count) {
     cout<<endl<<endl;
     count++;
 
+    InsertionSort(stud, count);
+
     ofstream f("Record.csv");
     for(int i = 0; i < count; i++) {
     	f << stud[i].getID() << "," 
@@ -333,18 +333,25 @@ void Staff :: add(Student stud[], int &count) {
     cout<<"                          CREATE NEW RECORD\n";
     cout<<"***********************************************************************\n\n";
     cout<<"\n\n\n\t\t\tSTUDENT DETAILS RECORDED\n\n\n";	
-    char y;
-    cout<<"\t\tDo you want to sort the student list (Y/N) : ";
-    cin>>y;
-    if (y=='Y' || y=='y') {
-        InsertionSort(stud, count);
-        cout<<"\n\n\t\t\tThe student list is sorted\n\n\n";
-    } 
-    else 
-        cout<<"\n\n\t\t\tThe list is not sorted\n\n\n";
-
+    
+    system("PAUSE");
     system("cls");
-    displayRecord(stud, count);
+    cout<<"*************************************************************************************************************************************\n";
+    cout<<"                                                       DISPLAY ALL RECORD\n";
+    cout<<"*************************************************************************************************************************************\n\n";
+    cout<<"ID        NAME                PROGRAM ENROLL              IC NUMBER        ADDRESS           GENDER    DATE OF BIRTH     PHONE NUMBER\n";
+    cout<<"-------------------------------------------------------------------------------------------------------------------------------------\n";
+    for (int i = 0; i < count; i++) {
+        cout<<left<<setw(10)<<stud[i].getID()
+            <<setw(20)<<stud[i].getName()
+            <<setw(28)<<stud[i].getProgramEnroll()
+            <<setw(17)<<stud[i].getIC()
+            <<setw(18)<<stud[i].getAddress()
+            <<setw(10)<<stud[i].getGender()
+            <<setw(18)<<stud[i].getDOB()               
+            <<setw(15)<<stud[i].getPhoneNo()<<endl;
+    }
+    cout<<endl<<endl;
 }
 
 //Function to delete student details
@@ -382,7 +389,7 @@ void Staff :: del(Student stud[], int &count) {
 		}
     	f.close();	
 	}
-
+      
     system("cls");
     cout<<"***********************************************************************\n";
     cout<<"                        DELETE STUDENT RECORD\n";
@@ -391,26 +398,47 @@ void Staff :: del(Student stud[], int &count) {
     	cout<<"\n\n\n\t\t\tRECORD NOT FOUND!\n\n\n\n\n"; 
 	else {
         cout<<"\n\n\n\t\tTHE RECORD WAS DELETED SUCCESSFULLY\n\n\n";
-        char y;
-        cout<<"\tDo you want to sort the student list (Y/N) : ";
-        cin>>y;
-        if (y=='Y' || y=='y') {
-            readFile(stud, count);
-            BubbleSort(stud, count); 
-            cout<<"\n\n\t\tThe student list is sorted\n\n\n";
-        } 
-        else {
-            readFile(stud, count);
-            cout<<"\n\n\t\t\tThe list is not sorted\n\n\n";	
-        }     
-    }
+        readFile(stud, count);
+        BubbleSort(stud, count);
 
-    system("cls");
-    displayRecord(stud, count);
+        system("PAUSE");
+        system("cls");
+        cout<<"*************************************************************************************************************************************\n";
+        cout<<"                                                       DISPLAY ALL RECORD\n";
+        cout<<"*************************************************************************************************************************************\n\n";
+        cout<<"ID        NAME                PROGRAM ENROLL              IC NUMBER        ADDRESS           GENDER    DATE OF BIRTH     PHONE NUMBER\n";
+        cout<<"-------------------------------------------------------------------------------------------------------------------------------------\n";
+        for (int i = 0; i < count; i++) {
+        cout<<left<<setw(10)<<stud[i].getID()
+            <<setw(20)<<stud[i].getName()
+            <<setw(28)<<stud[i].getProgramEnroll()
+            <<setw(17)<<stud[i].getIC()
+            <<setw(18)<<stud[i].getAddress()
+            <<setw(10)<<stud[i].getGender()
+            <<setw(18)<<stud[i].getDOB()               
+            <<setw(15)<<stud[i].getPhoneNo()<<endl;
+        }
+        cout<<endl<<endl;
+    }
 }
- 
-// Function to display all record of student in an array for the staff to see
-void Staff :: displayRecord(Student stud[], int &count) {
+
+// Function to display sorted student record
+void Staff :: display(Student stud[], int &count) {
+    SelectionSort(stud, count);
+
+    ofstream f("Record.csv");
+    for(int i = 0; i < count; i++) {
+    	f << stud[i].getID() << "," 
+          << stud[i].getName() << "," 
+          << stud[i].getProgramEnroll() << "," 
+          << stud[i].getIC() << "," 
+          << stud[i].getAddress() << "," 
+          << stud[i].getGender() << "," 
+          << stud[i].getDOB() << ","   
+          << stud[i].getPhoneNo() << endl;     
+	}
+    f.close();
+    
     cout<<"*************************************************************************************************************************************\n";
     cout<<"                                                       DISPLAY ALL RECORD\n";
     cout<<"*************************************************************************************************************************************\n\n";
@@ -427,27 +455,6 @@ void Staff :: displayRecord(Student stud[], int &count) {
             <<setw(15)<<stud[i].getPhoneNo()<<endl;
     }
     cout<<endl<<endl;
-}
-
-// Function to display sorted record
-void Staff :: display(Student stud[], int &count) {
-    displayRecord(stud, count);
-    system("PAUSE");
-    system("cls");
-    char y;
-    cout<<"*************************************************************************************************************************************\n";
-    cout<<"                                                       DISPLAY ALL RECORD\n";
-    cout<<"*************************************************************************************************************************************\n\n";
-    cout<<"\n\n\n\t\tDo you want to sort the student list (Y/N) : ";
-    cin>>y;
-    if (y=='Y' || y=='y') {
-        SelectionSort(stud, count);
-        cout<<"\n\n\t\t\tThe student list is sorted\n\n\n";
-        system("cls");
-        displayRecord(stud, count);
-    } 
-    else 
-        cout<<"\n\n\t\t\tThe list is not sorted\n\n\n";
 }
 
 
