@@ -79,13 +79,13 @@ void Staffmenu(Student stud[], int &count,Staff admin) {
     system("cls");
     switch(n)
     {
-    	case 1: stud->add(stud, count);
+    	case 1: admin.add(stud, count);
             break;
         case 2: admin.edit(stud, count);
              break;
-        case 3: stud->del(stud, count);
+        case 3: admin.del(stud, count);
         	break;
-        case 4: stud->display(stud, count);
+        case 4: admin.display(stud, count);
             break;
         case 5: menu(stud, count,admin);
             break;
@@ -113,7 +113,7 @@ void Stud(Student stud[], int &count,Staff admin) {
     system("cls");
     switch(n)
     {
-        case 1:admin.search(stud,count);
+        case 1:stud->search(stud,count);
            break;
         case 2:menu(stud, count,admin);
             break;
@@ -128,7 +128,7 @@ int main() {
     Student stud[50];
     Staff admin;
 
-    stud->readFile(stud, count);
+    admin.readFile(stud, count);
     
     menu(stud, count,admin);
    
