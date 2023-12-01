@@ -429,12 +429,6 @@ void Staff :: displayRecord(Student stud[], int &count) {
     cout<<endl<<endl;
 }
 
-<<<<<<< HEAD
-
-        
-
-
-=======
 // Function to display sorted record
 void Staff :: display(Student stud[], int &count) {
     displayRecord(stud, count);
@@ -449,7 +443,6 @@ void Staff :: display(Student stud[], int &count) {
     if (y=='Y' || y=='y') {
         SelectionSort(stud, count);
         cout<<"\n\n\t\t\tThe student list is sorted\n\n\n";
->>>>>>> 8ec64141b3d1196ae26320d1ca635150003ce194
         system("cls");
         displayRecord(stud, count);
     } 
