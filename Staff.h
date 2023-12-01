@@ -15,7 +15,6 @@ class Staff {
         void readFile(Student[], int&);
 		void add(Student [], int&);
 	    void del(Student [], int&);
-		//void displayRecord(Student [], int&);
 		void display(Student[], int&);
 
         friend class Student;
