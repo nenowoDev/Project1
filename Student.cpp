@@ -22,7 +22,7 @@ void Student::editGender(string newGender)            {gender=newGender;}
 void Student::editPhoneNo(string newPhone)            {phoneNo=newPhone;}
 void Student::editDOB(string newDOB)                  {DOB=newDOB;}
 
-
+// Function to search for student details
 void Student::search(Student stud[],int &count){
 
     system("cls");
