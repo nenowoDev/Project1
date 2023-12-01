@@ -23,7 +23,6 @@ void Student::editPhoneNo(string newPhone)            {phoneNo=newPhone;}
 void Student::editDOB(string newDOB)                  {DOB=newDOB;}
 
 
-
 void Student::search(Student stud[],int &count){
 
     system("cls");
@@ -48,10 +47,7 @@ void Student::search(Student stud[],int &count){
     if(searchwhere<1||searchwhere>9){
             search(stud,count);
     }
-
-    
     else{
-
         cout<<"\n\t\tVALUES TO SEARCH:";
         cin.ignore();
         string searchwhat;
@@ -93,7 +89,6 @@ void Student::search(Student stud[],int &count){
                     tempc++;
                 }
             }
-
         }
 
         else if(searchwhere==2){
@@ -177,10 +172,6 @@ void Student::search(Student stud[],int &count){
             }
         }
 
-
-        
-
-
         system("cls");
         cout<<"\n\n\t\tOCCURENCE OF \""<<searchwhat<<"\"\n";
         cout<<"*************************************************************************************************************************************\n";
@@ -197,11 +188,7 @@ void Student::search(Student stud[],int &count){
             <<setw(10)<<temp[i].getGender()
             <<setw(18)<<temp[i].getDOB()               
             <<setw(15)<<temp[i].getPhoneNo()<<endl;
-    }
-    cout<<endl<<endl;
-
-
+        }
+        cout<<endl<<endl;
     }   
-
-
 }
